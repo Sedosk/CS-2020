@@ -6,7 +6,7 @@
 
 int main(int argc, string argv[])
 {
-    // Checks if command-line arg takes 2 words, if not ends program
+    // Check if command-line arg takes 2 words, if not end program
     if (argc != 2)
     {
         printf("Command-line argument: 2 words\n");
@@ -15,8 +15,9 @@ int main(int argc, string argv[])
     }
 
     string key = argv[1];
+    int keylen = strlen(key);
 
-    for (int n = 0, u = strlen(key); n < u; n++)
+    for (int n = 0; n < keylen; n++)
     {
         // Key length input (26 characters)
         if (isalpha(key[n]) && strlen(key) != 26)
@@ -37,7 +38,7 @@ int main(int argc, string argv[])
         {
             // Duplicate characters in the key
             int j = 0;
-            for (int m = 0, p = strlen(key); m < p; m++)
+            for (int m = 0; m < keylen; m++)
             {
                 if (toupper(key[n]) == toupper(key[m]))
                 {
@@ -55,13 +56,13 @@ int main(int argc, string argv[])
         }
     }
 
-
-
-    // Prompts the user for input
+    // Prompt user for input
     string pt = get_string("Plaintext:  ");
 
-    // Encrypts the message
-    for (int i = 0, s = strlen(pt); i < s; i++)
+    int ptlen = strlen(pt);
+
+    // Encrypt message
+    for (int i = 0; i < ptlen; i++)
     {
         // For lowercase letters
         if (islower(pt[i]))
@@ -76,8 +77,7 @@ int main(int argc, string argv[])
         }
     }
 
-
-    // Prints ciphertext
+    // Print ciphertext
     printf("ciphertext: %s\n", pt);
 
     return 0;
