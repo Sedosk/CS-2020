@@ -19,33 +19,30 @@ typedef struct node
 node;
 
 // Number of buckets in hash table
-const unsigned int N = 1000;
+const unsigned int N = 10000000; // 10e7
 
 // Hash table
 node *table[N];
 
 // Global variables
 int word_count = 0;
-char copy[LENGTH + 1];
 
 // Returns true if word is in dictionary else false
 bool check(const char *word)
 {
-    /* make a copy of the word and pass */ 
-    /* any letter in uppercase to lowercase */
-    strcpy(copy, word);
-    for (int i = 0, n = strlen(copy); i < n; i++)
+    /* make a copy of the word and pass */
+    /* every letter to lowercase        */
+    char copy[LENGTH + 1];
+    for (int i = 0, n = strlen(word); i <= n; i++)
     {
-        if (isupper(copy[i]))
-        {
-            copy[i] = tolower(copy[i]);
-        }
-    }    
-    
+        copy[i] = tolower(word[i]);
+    }
+
     // Hash word from text and check if it is in respective linked list
-    for (node *csr = table[hash(copy)]; csr != NULL; csr = csr->next)
+    int j = hash(copy);
+    for (node *csr = table[j]; csr != NULL; csr = csr->next)
     {
-        if (strcmp(csr->word, copy) == 0)
+        if (strcasecmp(csr->word, word) == 0)
         {
             return true;
         }
@@ -75,7 +72,7 @@ bool load(const char *dictionary)
 {
     char save[LENGTH + 1];
 
-    // Open dictionary file 
+    // Open dictionary file
     FILE *inptr = fopen(dictionary, "r");
     if (inptr == NULL)
     {
@@ -100,10 +97,11 @@ bool load(const char *dictionary)
             return false;
         }
         strcpy(n->word, save);
-        
+
         // Hash word and add to start of linked list
-        n->next = table[hash(n->word)];
-        table[hash(n->word)] = n;
+        int j = hash(n->word);
+        n->next = table[j];
+        table[j] = n;
 
         word_count++;
     }
@@ -139,3 +137,4 @@ bool unload(void)
 
     return false;
 }
+
