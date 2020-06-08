@@ -66,8 +66,8 @@ def credit(number):
     # Isolate first 2 digits (left to right)
     while copy > 100:
         copy = floor(copy / 10)
-    num2 = (copy % 10)                      # First digit
-    num1 = floor((copy / 10)) % 10          # Second digit
+    num2 = (copy % 10)                      # Second digit
+    num1 = floor((copy / 10)) % 10          # First digit
 
     # Result of algorithm
     if (calc2 % 10) == 0:
