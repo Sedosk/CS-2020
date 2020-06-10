@@ -1,9 +1,6 @@
 #include <cs50.h>
 #include <stdio.h>
 #include <math.h>
-#include <cs50.h>
-#include <stdio.h>
-#include <math.h>
 #include <string.h>
 #include <ctype.h>
 
@@ -41,8 +38,8 @@ int main(void)
     }
    
     // Coleman-Liau index
-    int L = round(100.000 * (float) l / w);
-    int S = round(100.000 * (float) s / w);
+    int L = 100.000 * (float) l / w;
+    int S = 100.000 * (float) s / w;
     int grade = round(0.0588 * L - 0.296 * S - 15.800);
 
     // Print grade readability
