@@ -53,8 +53,7 @@ int main(int argc, char *argv[])
             sprintf(filename, "%03i.jpg", filenumber);
 
             // Create a file called outptr and write in it
-            outptr = fopen(filename, "a");
-            fopen(filename, "w");
+            outptr = fopen(filename, "w");
             fwrite(buffer, sizeof(BYTE), BLOCK_SIZE, outptr);
 
             filenumber++;
